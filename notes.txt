@@ -1,0 +1,57 @@
+serialization and deserialization of data -- 
+
+Serialization converts an in-memory data structure to a value that can be stored or transferred.
+
+Let’s say we have a users object in a JavaScript script that contains a total user count and a list of users, as follows:
+
+const usersObject = {
+  "total": 2,
+  "users": [
+    {
+      "name": "Patrick"
+    },
+    {
+      "name": "Michael"
+    }
+  ]
+}
+When the JavaScript run time executes the above code, it’ll create a data structure in memory similar to the below. The engine will store each object and array at a separate location in memory and provide references to the places where they are used:
+
+object_in_memory_a
+{
+  name: "Patrick"
+}
+object_in_memory_b
+{
+  name: "Michael"
+}
+array_in_memory_c
+[
+  object_in_memory_a,
+  object_in_memory_b
+]
+object_in_memory_d
+{
+  total: 2,
+  users: array_in_memory_c
+}
+
+The above isn’t something that can be easily transmitted to another machine or used by the same machine later after the program’s process ends. To do this, we must serialize the data. That is, we must convert the in-memory data structure into a series of bytes (usually ASCII characters) that record the data structure in a recoverable format.
+
+In our JavaScript example, we can serialize the usersObject by passing it into the JSON.stringify() function, as we do below.
+
+Command:
+
+JSON.stringify(usersObject);
+Result:
+
+"{"total":2,"users":[{"name":"Patrick"},{"name":"Michael"}]}"
+As we can see, the in-memory object has been converted to a string. This string can now be transferred to other machines or stored to the disk for later use.
+
+for deserialization 
+const usersObject = JSON.parse(responseFromServer);
+
+Summary
+Serialization takes an in-memory data structure and converts it into a series of bytes that can be stored and transferred.
+
+Deserialization takes a series of bytes and converts it to an in-memory data structure that can be consumed programmatically.

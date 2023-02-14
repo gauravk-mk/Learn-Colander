@@ -10,31 +10,46 @@ import yaml
  
 
 
+data = {
+    "id" : "61c1820675828f004abd995f",
+    "toEmails" : [ 
+        "prathima@mortgagekart.com"
+    ],
+    "ccEmails" : [],
+    "attachments" : [
+	    {
+	    "file":"temp.txt",
+	    "path":"/usr"
+	    },
+	    {
+	    "file":"temp.txt",
+	    "path":"/usr"
+	    },
+	    {
+	    "file":"temp.txt",
+	    "path":"/usr"
+	    }
+    ],
+    "monitoringId" : "VMADDBJ7JOBKFEEDCG8PFNXT4J",
+    "userId" : "EXECWXQK2OKMKOXOFVZFE1FCTJ",
+    "tid" : "lsl",
+    "eid" : "DTNY80CA0YRLD8GJQGCBN8P4A7",
+    "fromEmail" : "MortgageKart<mkid@mortgagekart.com>",
+    "channel" : "Email",
+    "subject" : "Welcome to My Mortgage Alert",
+    "status" : "Sent",
+    "emailIdentifier" : "monitoring_subscribe",
+    "userAction" : False,
+    "createdAt" : "2021-12-21T07:28:06.166Z",
+    "updatedAt" : "2021-12-21T07:28:06.166Z",
+    "_v" : 0
+}
 
-class Friend(colander.TupleSchema):
-    rank = colander.SchemaNode(colander.Int(),
-                               validator=colander.Range(0, 9999))
-    name = colander.SchemaNode(colander.String())
-    print("Friend is here")
 
-class Phone(colander.MappingSchema):
-    location = colander.SchemaNode(colander.String(),
-                                   validator=colander.OneOf(['home', 'work','office']))
-    number = colander.SchemaNode(colander.String())
 
-class Friends(colander.SequenceSchema):
-    friend = Friend()
 
-class Phones(colander.SequenceSchema):
-    phone = Phone()
 
-class Person(colander.MappingSchema):
-    name = colander.SchemaNode(colander.String())
-    age = colander.SchemaNode(colander.Int(),
-                              validator=colander.Range(0, 200))
-    friends = Friends()
-    phones = Phones()
-    print("Person is here ")
+
 
 
 class Attachment(colander.MappingSchema):
@@ -47,11 +62,11 @@ class Attachments(colander.SequenceSchema):
 #list of string 
 
 class User(colander.MappingSchema):
-    _id: colander.SchemaNode(colander.String())
-    toEmails: colander.SchemaNode(colander.List())
-    ccEmails: colander.SchemaNode(colander.List())
-    attachments = Attachments()
     monitoringId = colander.SchemaNode(colander.String())
+    id = colander.SchemaNode(colander.String())
+    toEmails = colander.SchemaNode(colander.List())
+    ccEmails= colander.SchemaNode(colander.List())
+    attachments = Attachments()
     userId = colander.SchemaNode(colander.String())
     tid = colander.SchemaNode(colander.String())
     eid = colander.SchemaNode(colander.String())
@@ -72,9 +87,6 @@ deserialize = schema.deserialize(data)
 
 
 print(deserialize)
-
-
-
 
 
 
@@ -112,3 +124,28 @@ print(deserialize)
 
 # person.name="Gaurav"
 # pprint(inspect.getmembers(person))
+
+class Friend(colander.TupleSchema):
+    rank = colander.SchemaNode(colander.Int(),
+                               validator=colander.Range(0, 9999))
+    name = colander.SchemaNode(colander.String())
+    print("Friend is here")
+
+class Phone(colander.MappingSchema):
+    location = colander.SchemaNode(colander.String(),
+                                   validator=colander.OneOf(['home', 'work','office']))
+    number = colander.SchemaNode(colander.String())
+
+class Friends(colander.SequenceSchema):
+    friend = Friend()
+
+class Phones(colander.SequenceSchema):
+    phone = Phone()
+
+class Person(colander.MappingSchema):
+    name = colander.SchemaNode(colander.String())
+    age = colander.SchemaNode(colander.Int(),
+                              validator=colander.Range(0, 200))
+    friends = Friends()
+    phones = Phones()
+    print("Person is here ")

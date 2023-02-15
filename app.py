@@ -1,49 +1,36 @@
 import colander
 from pprint import pprint
-import inspect
-import yaml
 
-# stream = open("data.yaml","r")
-# dictionary = yaml.load(stream)
-# for key, value in dictionary.items():
-#     print (key + " : " + str(value))
- 
+import json
 
 
-data = {
-    "id" : "61c1820675828f004abd995f",
-    "toEmails" : [ 
-        "prathima@mortgagekart.com"
-    ],
-    "ccEmails" : [],
-    "attachments" : [
-	    {
-	    "file":"temp.txt",
-	    "path":"/usr"
-	    },
-	    {
-	    "file":"temp.txt",
-	    "path":"/usr"
-	    },
-	    {
-	    "file":"temp.txt",
-	    "path":"/usr"
-	    }
-    ],
-    "monitoringId" : "VMADDBJ7JOBKFEEDCG8PFNXT4J",
-    "userId" : "EXECWXQK2OKMKOXOFVZFE1FCTJ",
-    "tid" : "lsl",
-    "eid" : "DTNY80CA0YRLD8GJQGCBN8P4A7",
-    "fromEmail" : "MortgageKart<mkid@mortgagekart.com>",
-    "channel" : "Email",
-    "subject" : "Welcome to My Mortgage Alert",
-    "status" : "Sent",
-    "emailIdentifier" : "monitoring_subscribe",
-    "userAction" : False,
-    "createdAt" : "2021-12-21T07:28:06.166Z",
-    "updatedAt" : "2021-12-21T07:28:06.166Z",
-    "_v" : 0
-}
+f = open('data.json')
+data = json.load(f)
+
+
+
+
+# data = {
+#     "id" : "61c1820675828f004abd995f",
+#     "toEmails" : [ 
+#         "prathima@mortgagekart.com"
+#     ],
+#     "ccEmails" : [],
+    
+#     "monitoringId" : "VMADDBJ7JOBKFEEDCG8PFNXT4J",
+#     "userId" : "EXECWXQK2OKMKOXOFVZFE1FCTJ",
+#     "tid" : null,
+#     "eid" : "DTNY80CA0YRLD8GJQGCBN8P4A7",
+#     "fromEmail" : "MortgageKart<mkid@mortgagekart.com>",
+#     "channel" : "Email",
+#     "subject" : "Welcome to My Mortgage Alert",
+#     "status" : "Sent",
+#     "emailIdentifier" : "monitoring_subscribe",
+#     "userAction" : False,
+#     "createdAt" : "2021-12-21T07:28:06.166Z",
+#     "updatedAt" : "2021-12-21T07:28:06.166Z",
+#     "_v" : 0
+# }
 
 
 
@@ -66,9 +53,9 @@ class User(colander.MappingSchema):
     id = colander.SchemaNode(colander.String())
     toEmails = colander.SchemaNode(colander.List())
     ccEmails= colander.SchemaNode(colander.List())
-    attachments = Attachments()
+    attachments = Attachments(missing= colander._drop())
     userId = colander.SchemaNode(colander.String())
-    tid = colander.SchemaNode(colander.String())
+    tid = colander.SchemaNode(colander.String(), missing = "null")
     eid = colander.SchemaNode(colander.String())
     fromEmail = colander.SchemaNode(colander.String())
     channel = colander.SchemaNode(colander.String())

@@ -1,0 +1,21 @@
+{
+    "id" : "61c1820675828f004abd995f",
+    "toEmails" : [ 
+        "prathima@mortgagekart.com"
+    ],
+    "ccEmails" : [],
+    
+    "monitoringId" : "VMADDBJ7JOBKFEEDCG8PFNXT4J",
+    "userId" : "EXECWXQK2OKMKOXOFVZFE1FCTJ",
+    "tid" : null,
+    "eid" : "DTNY80CA0YRLD8GJQGCBN8P4A7",
+    "fromEmail" : "MortgageKart<mkid@mortgagekart.com>",
+    "channel" : "Email",
+    "subject" : "Welcome to My Mortgage Alert",
+    "status" : "Sent",
+    "emailIdentifier" : "monitoring_subscribe",
+    "userAction" : false,
+    "createdAt" : "2021-12-21T07:28:06.166Z",
+    "updatedAt" : "2021-12-21T07:28:06.166Z",
+    "_v" : 0
+}
